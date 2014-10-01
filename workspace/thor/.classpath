@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="po3d-pratica-1"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jogl-windows-i586"/>
+	<classpathentry kind="lib" path="lib/NBTree.jar"/>
+	<classpathentry kind="lib" path="lib/jdbm-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/thor-core-1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
