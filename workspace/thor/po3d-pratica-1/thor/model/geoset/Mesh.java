@@ -156,7 +156,6 @@ public abstract class Mesh extends Object {
             gl.glEnd();
 		}
 	}
-
 	
 	public Point3D getBarycenter() {
 		/* TODO: PO3D Pratica 1 - calculate the barycenter of the mesh
@@ -183,5 +182,12 @@ public abstract class Mesh extends Object {
 		 * * _faces -> contains the list of the id of the vertices that from it
 		 */
 		return 0;
+	}
+	
+	public Mesh getConvexHull() {
+		/* TODO: PO3D Pratica 1 - create and return the convex hull
+		 * return a new mesh that is the convex hull of the original
+		 */
+		return null;
 	}
 }
