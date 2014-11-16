@@ -1,0 +1,262 @@
+[
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "be4124ecceb37230419f0f31ea6e7d50babb4973",
+    "jarFileModificationDate": "2014-09-17T11:00:32.327+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\jce.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "2e2096bd62342a1ef53a5004a9a80c3c11475e6d",
+    "jarFileModificationDate": "2014-09-17T11:00:32.160+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\ext\\dnsns.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "gluegen-rt",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "48b4fb92274a3903133bdfbe7a1cc8dd33d8b7f4",
+    "jarFileModificationDate": "2013-03-13T14:58:45Z",
+    "location": "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\jar\\gluegen-rt.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "c141b2d8c951c0a5e3198d76cfffed2714683eea",
+    "jarFileModificationDate": "2014-09-17T11:00:35.162+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\ext\\localedata.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "NBTree",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "5188b54e6da11fd10b927d321f4f808a25519368",
+    "jarFileModificationDate": "2013-07-23T00:34:04.031+01:00",
+    "location": "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\NBTree.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "435b4e45be35733335afaeb7acbfe8533f6fe66d",
+    "jarFileModificationDate": "2014-09-17T11:00:32.390+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\resources.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "d2e7c8d7ccd699949fff8a8c3a6680c8bf175b8c",
+    "jarFileModificationDate": "2014-09-17T11:00:35.123+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\jsse.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "bbb96a824923a2b2a23fcebaa27411135accdc7e",
+    "jarFileModificationDate": "2014-09-17T11:00:32.293+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\ext\\zipfs.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "40a67c09f821af3f62d428e4d79980f9df10e407",
+    "jarFileModificationDate": "2014-09-17T11:00:32.243+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\ext\\sunec.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "30d4972d6887d4f3c108ea6dea325af11538094d",
+    "jarFileModificationDate": "2014-09-17T11:00:34.800+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\rt.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "48f9ee4bd07a4d4fcf0307589e60b709b2763701",
+    "jarFileModificationDate": "2014-09-17T11:00:32.142+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\ext\\access-bridge-32.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "46633a6718a3a32ebae31fa70343f55b89e6bc41",
+    "jarFileModificationDate": "2014-09-17T11:00:34.869+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\charsets.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "a49f943cd9af4e10424a827745d70566d9bdb7a0",
+    "jarFileModificationDate": "2014-09-17T11:00:32.336+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\jfr.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "1826204b0e05aef412b595321866f7d190e0498d",
+    "jarFileModificationDate": "2014-09-17T11:00:32.246+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\ext\\sunjce_provider.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jdbm-1.0",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "8cf5b9f298220baca566832904c52647f257e040",
+    "jarFileModificationDate": "2013-07-23T00:34:04.034+01:00",
+    "location": "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\jdbm-1.0.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "thor-core-1.0",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "dbb03c5b1a47293c77e6e345939a94e2d4c845d3",
+    "jarFileModificationDate": "2014-10-01T15:17:17.979+01:00",
+    "location": "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\thor-core-1.0.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "5e51ce82a095b4a23291b1cd35e6f1488efc5776",
+    "jarFileModificationDate": "2014-09-17T11:00:32.291+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\ext\\sunpkcs11.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "a3d1a9689f1c8e36ab64fb669df92076771c42f2",
+    "jarFileModificationDate": "2014-09-17T11:00:32.288+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\ext\\sunmscapi.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "1cfdf3b8d85c787c2e576d6d703b5627b5ea3d41",
+    "jarFileModificationDate": "2014-09-17T11:00:32.213+01:00",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\ext\\jaccess.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jogl-all",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "8c244cd5b581a6cd71294b9b41d0653ef50decff",
+    "jarFileModificationDate": "2013-03-13T14:58:46Z",
+    "location": "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\jar\\jogl-all.jar",
+    "javaRuntime": false
+  }
+]

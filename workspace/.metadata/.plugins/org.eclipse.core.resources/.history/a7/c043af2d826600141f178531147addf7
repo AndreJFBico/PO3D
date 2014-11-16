@@ -1,0 +1,90 @@
+package thor.model.geoset;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import thor.graphics.Point3D;
+
+public class Voxel {
+
+	Point3D _position;
+	private Point3D _min;
+	private Point3D _max;
+	VoxelType _type;
+	VoxelNeighborType _n_type;
+	List<Integer> _neighbors;
+	int _indexX, _indexY, _indexZ;
+	int _DT;
+	private double _size;
+	AABB _boundingBox;
+	
+	public Voxel(Point3D position, int indexX, int indexY, int indexZ, Point3D min, Point3D max, double size, List<Integer> neighbors)
+	{
+		_n_type = VoxelNeighborType.UNASSIGNED;
+		_position = position;
+		_indexX = indexX;
+		_indexY = indexY;
+		_indexZ = indexZ;
+		_type = VoxelType.UNASSIGNED_VOXEL;
+		set_min(min);
+		set_max(max);
+		_boundingBox = new AABB(get_min(), get_max());
+		set_size(size);
+		_neighbors = neighbors;
+		_DT = Integer.MAX_VALUE;
+	}
+	
+	public void setType(VoxelType type)
+	{
+		_type = type;
+	}
+	
+	public boolean intersect(Face triangle, List<Vertex> vertices, double voxelSize)
+	{
+		//System.out.println("Intersect Voxel");
+		return _boundingBox.intersect(triangle, vertices, voxelSize);
+	}
+	
+	public List<Integer> getNeighbors()
+	{
+		return _neighbors;
+	}
+
+	public Point3D get_min() {
+		return _min;
+	}
+
+	public void set_min(Point3D _min) {
+		this._min = _min;
+	}
+
+	public Point3D get_max() {
+		return _max;
+	}
+
+	public void set_max(Point3D _max) {
+		this._max = _max;
+	}
+
+	public double get_size() {
+		return _size;
+	}
+
+	public void set_size(double _size) {
+		this._size = _size;
+	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o instanceof Voxel) {
+			Voxel e = (Voxel) o;
+			return (_position.getX() == e._position.getX() && 
+					_position.getY() == e._position.getY() &&
+					_position.getZ() == e._position.getZ());
+		} else {
+			return false;
+		}
+		
+	}
+}

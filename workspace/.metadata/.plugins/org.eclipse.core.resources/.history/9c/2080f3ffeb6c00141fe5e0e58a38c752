@@ -1,0 +1,11 @@
+package thor.model.geoset;
+
+public class Node {
+
+	List<Node> _neighbors;
+	
+	public Node()
+	{
+		
+	}
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="257" key="DIALOG_WIDTH"/>
+		<item value="315" key="DIALOG_Y_ORIGIN"/>
+		<item value="381" key="DIALOG_HEIGHT"/>
+		<item value="1023" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="voxelSize" key="selection"/>
+		<list key="findhistory">
+			<item value="voxelsize"/>
+			<item value="boundary"/>
+			<item value="_direction"/>
+			<item value="P"/>
+			<item value="_inside"/>
+			<item value="system.out"/>
+			<item value="geninside"/>
+			<item value="getvoxel"/>
+		</list>
+		<list key="replacehistory">
+			<item value="hullPoint"/>
+		</list>
+	</section>
+</section>

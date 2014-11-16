@@ -1,0 +1,42 @@
+1414145539021	Delete element
+1414145570586	Move compilation unit
+1414145577072	Move compilation unit
+1414145584668	Move compilation unit
+1414145610386	Move compilation unit
+1414145776784	Rename package 'thor.model.geoset.math'
+1414145795065	Rename package 'thor.model.geoset.ConvexHull'
+1414145800786	Move compilation unit
+1414145818711	Rename package 'thor.model.geoset.Hull'
+1414145823013	Move compilation unit
+1414145901742	Move compilation unit
+1414145911503	Move compilation unit
+1414145915735	Move compilation unit
+1414145918437	Move compilation unit
+1414145943788	Move compilation unit
+1414145987602	Rename package 'thor.model.geoset.math'
+1414145998464	Rename package 'thor.model.geoset.supportMath'
+1414146170953	Move compilation unit
+1414146180448	Move compilation unit
+1414146183705	Move compilation unit
+1414146186237	Move compilation unit
+1414146191525	Delete element
+1414146194454	Delete element
+1414146196852	Delete element
+1414146311484	Rename compilation unit 'Voxelmesh.java'
+1414146458606	Delete element
+1414146545805	Move compilation units
+1414146548967	Delete element
+1414146941252	Rename field 'end'
+1414154104558	Rename compilation unit 'BoundingBox.java'
+1414158667327	Rename field 'min'
+1414158674313	Rename field 'max'
+1414161888816	Rename type 'point3dMath'
+1414170287104	Rename local variable 'tmpx'
+1414170294131	Rename local variable 'tmpy'
+1414170300679	Rename local variable 'lowz'
+1414170309722	Rename local variable 'tmpx1'
+1414170325806	Rename local variable 'tmpy1'
+1414170333332	Rename local variable 'tmpz1'
+1414238789622	Encapsulate field '_min'
+1414238796712	Encapsulate field '_max'
+1414238801568	Encapsulate field '_size'

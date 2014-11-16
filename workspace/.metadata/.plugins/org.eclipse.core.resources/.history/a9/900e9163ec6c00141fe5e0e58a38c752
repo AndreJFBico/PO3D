@@ -1,0 +1,13 @@
+package thor.model.geoset;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Node {
+	List<Node> _neighbors = new ArrayList<Node>();
+	
+	public Node(List<Node> neighbors)
+	{
+		_neighbors = neighbors;
+	}
+}

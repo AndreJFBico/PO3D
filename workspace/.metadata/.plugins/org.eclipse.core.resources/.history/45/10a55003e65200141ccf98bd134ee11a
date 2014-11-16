@@ -1,0 +1,12 @@
+package thor.model.geoset;
+
+public class Edge3D {
+	  Point3D start,end; //end points
+	  Point3D center;
+	  
+	  public Edge3d(Point3d start, Point3d end) {
+		    this.start = start;
+		    this.end = end;
+		    centre = start;
+		  }
+}

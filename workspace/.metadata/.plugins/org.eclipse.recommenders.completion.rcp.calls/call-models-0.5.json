@@ -1,0 +1,62 @@
+{
+  "C:\\Dropbox\\codebox\\thor_encontra\\workspace\\thor\\test": {
+    "location": "C:\\Dropbox\\codebox\\thor_encontra\\workspace\\thor\\test",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Dropbox\\codebox\\thor_encontra\\workspace\\thor\\test\u0027. Skipped."
+  },
+  "C:\\Dropbox\\codebox\\thor_encontra\\workspace\\thor\\src": {
+    "location": "C:\\Dropbox\\codebox\\thor_encontra\\workspace\\thor\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Dropbox\\codebox\\thor_encontra\\workspace\\thor\\src\u0027. Skipped."
+  },
+  "C:\\Java\\jre7\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\Java\\jre7\\lib\\rt.jar",
+    "status": "RESOLVED"
+  },
+  "C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\src": {
+    "location": "C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\src\u0027. Skipped."
+  },
+  "C:\\Dropbox\\codebox\\po3d\\workspace\\po3d-pratica-1\\src": {
+    "location": "C:\\Dropbox\\codebox\\po3d\\workspace\\po3d-pratica-1\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Dropbox\\codebox\\po3d\\workspace\\po3d-pratica-1\\src\u0027. Skipped."
+  },
+  "C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\lib\\jar\\jogl-all.jar": {
+    "location": "C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\lib\\jar\\jogl-all.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\lib\\jar\\jogl-all.jar\u0027. Neither fingerprint \u00278c244cd5b581a6cd71294b9b41d0653ef50decff\u0027 nor symbolic name \u0027jogl-all\u0027 are known."
+  },
+  "C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\test": {
+    "location": "C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\test",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\test\u0027. Skipped."
+  },
+  "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\model.viewer (do not edit)": {
+    "location": "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\model.viewer (do not edit)",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\model.viewer (do not edit)\u0027. Skipped."
+  },
+  "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\thor-core-1.0.jar": {
+    "location": "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\thor-core-1.0.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\thor-core-1.0.jar\u0027. Neither fingerprint \u0027dbb03c5b1a47293c77e6e345939a94e2d4c845d3\u0027 nor symbolic name \u0027thor-core-1.0\u0027 are known."
+  },
+  "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\jar\\jogl-all.jar": {
+    "location": "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\jar\\jogl-all.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\lib\\jar\\jogl-all.jar\u0027. Neither fingerprint \u00278c244cd5b581a6cd71294b9b41d0653ef50decff\u0027 nor symbolic name \u0027jogl-all\u0027 are known."
+  },
+  "C:\\Program Files (x86)\\Java\\jre7\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\rt.jar",
+    "status": "RESOLVED"
+  },
+  "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\po3d-pratica-1": {
+    "location": "C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\po3d-pratica-1",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\t-pedrop\\Desktop\\workspace\\thor\\po3d-pratica-1\u0027. Skipped."
+  }
+}

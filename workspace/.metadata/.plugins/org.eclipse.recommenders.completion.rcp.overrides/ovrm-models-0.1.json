@@ -1,0 +1,17 @@
+{
+  "C:\\Java\\jre7\\lib\\rt.jar": {
+    "coordinate": "jre:jre:zip:ovrm:1.0.0",
+    "location": "C:\\Java\\jre7\\lib\\rt.jar",
+    "status": "RESOLVED"
+  },
+  "C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\src": {
+    "location": "C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Dropbox\\codebox\\po3d\\workspace\\thor\\src\u0027. Skipped."
+  },
+  "C:\\Program Files (x86)\\Java\\jre7\\lib\\rt.jar": {
+    "location": "C:\\Program Files (x86)\\Java\\jre7\\lib\\rt.jar",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Program Files (x86)\\Java\\jre7\\lib\\rt.jar\u0027. Skipped."
+  }
+}

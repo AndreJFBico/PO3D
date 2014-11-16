@@ -1,0 +1,12 @@
+package thor.model.geoset;
+
+public class GraphEdge {
+	GraphNode _origin;
+	GraphNode _destination;
+	double _weight;
+	
+	public GraphEdge(GraphNode _origin, GraphNode _destination, double _weight)
+	{
+		
+	}
+}

@@ -1,0 +1,13 @@
+# Blender v2.71 (sub 0) OBJ File: ''
+# www.blender.org
+mtllib DoubleTriangle.mtl
+o Plane
+v 0.952080 0.078754 1.110993
+v -1.047920 0.078754 -0.889007
+v 0.952080 0.254844 -0.889007
+v 0.952080 0.430934 1.110993
+v -1.047920 0.430934 -0.889007
+usemtl None
+s off
+f 1 2 3
+f 4 3 5

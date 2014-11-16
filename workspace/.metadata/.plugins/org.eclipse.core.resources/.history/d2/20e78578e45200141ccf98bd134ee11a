@@ -1,0 +1,67 @@
+package thor.model.geoset;
+
+import thor.graphics.Point3D;
+import thor.graphics.Point3D.Double;
+import thor.graphics.Point3D.Float;
+
+public class HalfSpace {
+	public static Point3D k = new Point3D.Double(0.0f, 0.0f, 1.0f);
+
+	Point3D normal; // normal to boundary plane
+	double d; // eqn of half space is normal.x - d > 0
+
+	public HalfSpace(Point3D a, Point3D b, Point3D c) {
+		Point3D t0 = subtract(b, a);
+		Point3D t1 = subtract(c, a);
+		t0 = cross(t0, t1);
+		t0.
+	}
+
+	public Point3D scale(double x, double y, double z) {
+		return new Point3D.Double(x * v[0], y * v[1], z * v[2]);
+	}
+
+	public Point3D subtract(Point3D v, Point3D x) {
+		Point3D a = new Point3D.Double(0.0f, 0.0f, 0.0f);
+
+		a.setLocation(v.getX() - x.getX(), v.getY() - x.getY(),
+				v.getZ() - x.getZ());
+
+		return a;
+	}
+
+	public double dot(Point3D v, Point3D x) {
+		double d = 0;
+
+		d += v.getX() * x.getX();
+		d += v.getY() * x.getY();
+		d += v.getZ() * x.getZ();
+
+		return d;
+	}
+
+	public Point3D cross(Point3D v, Point3D x) {
+		return new Point3D.Double(v.getY() * x.getZ() - x.getY() * v.getZ(),
+				v.getZ() * x.getX() - x.getZ() * v.getX(), v.getX() * x.getY()
+						- x.getX() * v.getY());
+	}
+
+	/**
+	 * Create a half space parallel to z axis
+	 */
+	public HalfSpace(Point3D a, Point3D b) {
+
+	}
+
+	public boolean inside(Point3D x) {
+
+	}
+
+	/**
+	 * z coordinate of intersection of a vertical line through p and boundary
+	 * plane
+	 */
+	public double zint(Point3D p) {
+
+	}
+}

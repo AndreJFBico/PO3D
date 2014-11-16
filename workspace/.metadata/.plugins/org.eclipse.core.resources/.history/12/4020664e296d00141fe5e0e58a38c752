@@ -1,0 +1,55 @@
+package thor.model.geoset;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Skeleton {
+
+	VoxelMesh _mesh;
+
+	public Skeleton(VoxelMesh mesh)
+	{
+		_mesh = mesh;
+	}
+	
+	public List<GraphNode> genBasicGraph()
+	{
+		List<Voxel> voxels = _mesh._thinnedVolume;
+		List<GraphNode> allNodes = new ArrayList<GraphNode>();
+		List<GraphNode> notProcessedNodes = new ArrayList<GraphNode>();
+		
+		for(int i = 0; i < voxels.size(); i++)
+		{
+			Voxel v = voxels.get(i);
+			allNodes.add(new GraphNode(v._position, new ArrayList<GraphEdge>()));
+		}
+		
+		notProcessedNodes.addAll(allNodes);
+		
+		for(int i = 0; i < allNodes.size(); i++)
+		{
+			GraphNode n = allNodes.get(i);
+			notProcessedNodes.remove(n);
+			for(int z = 0; z < notProcessedNodes.size(); z++)
+			{
+				GraphNode destination = allNodes.get(z);
+				List<GraphEdge> neighbors = n.getNeighbors();
+				GraphEdge edge = new GraphEdge(n, destination, customMath.length(
+										customMath.sub(
+												destination._position, 
+												n._position)), false);
+				neighbors.add(edge);
+				destination.getNeighbors().add(edge);
+			}
+		}
+		
+		return allNodes;
+	}
+	
+	public List<GraphNode> genMinimumSpanningTree()
+	{
+		List<Voxel> voxels = _mesh._thinnedVolume;
+		List<GraphNode> minimumSpanningTree = new ArrayList<GraphNode>();
+		return minimumSpanningTree;
+	}
+}

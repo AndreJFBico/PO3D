@@ -1,0 +1,157 @@
+package thor.model.geoset;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import thor.graphics.Point3D;
+
+public class ConvexHull {
+
+	protected EdgeStack _openEdges = new EdgeStack();
+	protected List<String> _createdEdges = new ArrayList<String>();
+	
+	protected Vertex[] _pts;
+	protected BufferedMesh _mesh = new BufferedMesh();
+	
+	public ConvexHull() {}
+
+	public void setPoints(List<Vertex> vertices)
+	{
+		_pts = vertices.toArray(new Vertex[vertices.size()]);
+	}
+	
+	/*
+	 * returns the lower point of the points list. in the case of a tie the
+	 * other y coordinate is used, and the x is used in the case of another tie.
+	 * Trows an erro in the case of a duplicate minimum.
+	 */
+	private int lower() { //throws Exception {
+		int index = 0;
+		for (int i = 1; i < _pts.length; i++) {
+			if (_pts[i].z < _pts[index].z)
+				index = i;
+			else if (_pts[i].z == _pts[index].z)
+				if (_pts[i].y < _pts[index].y)
+					index = i;
+				else if (_pts[i].x < _pts[index].x)
+					index = i;
+				else if (_pts[i].y == _pts[index].y && _pts[i].x == _pts[i].x)
+				{
+					index = i;
+					/*throw new Exception("duplicate point with index: " + i
+							+ " and " + index);*/
+					
+				}
+
+		}
+		return index;
+	}
+
+	private int getNextPoint(int p1Index, int p2Index) {
+		Point3D p1 = _pts[p1Index];
+		Point3D p2;
+
+		if (p2Index < 0) {
+			p2 = point3dMath.subtract(p1, new Point3D.Double(1.0f, 1.0f, 0.0f));
+		} else {
+			p2 = _pts[p2Index];
+		}
+
+		Point3D edge = point3dMath.subtract(p2, p1);
+		edge = point3dMath.normalize(edge);
+
+		int candidateIndex = -1;
+
+		for (int i = 0; i < _pts.length; i++) {
+			if (i != p1Index && i != p2Index) {
+				if (candidateIndex == -1) {
+					candidateIndex = i;
+				} else {
+					Point3D v = point3dMath.subtract(_pts[i], p1);
+					v = point3dMath.subtract(v,
+							point3dMath.projectOver(v, edge));
+					Point3D candidate = point3dMath.subtract(
+							_pts[candidateIndex], p1);
+					candidate = point3dMath.subtract(candidate,
+							point3dMath.projectOver(candidate, edge));
+
+					Point3D cross = point3dMath.cross(candidate, v);
+					if (point3dMath.dot(cross, edge) > 0) {
+						candidateIndex = i;
+					}
+				}
+			}
+		}
+		return candidateIndex;
+	}
+	
+	private boolean edgeExists(int p1, int p2)
+	{
+		String edge = Integer.toString(p1)+Integer.toString(p2);
+		return _createdEdges.contains(edge);	
+	}
+	
+	private void addEdge(int p1, int p2)
+	{
+		String edge = Integer.toString(p1)+Integer.toString(p2);
+		System.out.println(edge);
+		if(!_createdEdges.contains(edge))
+		{
+			_createdEdges.add(edge);
+		}
+		if(!edgeExists(p2, p1))
+		{
+			_openEdges.put(new Edge3D(p2, p1));
+		}
+	}
+	
+	public Mesh getMesh()
+	{
+		return _mesh;
+	}
+
+	public Mesh build() {
+		try {
+			int index1 = lower();
+			int index2 = getNextPoint(index1, -1);
+			
+			addEdge(index2, index1);
+			
+			int v_index = 0;
+			while (!_openEdges.isEmpty())
+			{
+				Edge3D edge = _openEdges.get();
+				index1 = edge.start;
+				index2 = edge.end;
+				
+				if(!edgeExists(index1, index2))
+				{
+					int index3 = getNextPoint(index1, index2);
+					
+					//create a polygon
+					_mesh.addVertex(_pts[index1]);
+					_mesh.addVertex(_pts[index2]);
+					_mesh.addVertex(_pts[index3]);
+					
+					List<Integer> face = new ArrayList<Integer>();
+					face.add(v_index);
+					face.add(v_index + 1);
+					face.add(v_index + 2);
+
+					_mesh.addFace(face);
+					v_index+=3;
+					//
+					
+					addEdge(index1, index2);
+					addEdge(index2, index3);
+					addEdge(index3, index1);
+				}
+			}	
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return _mesh;
+	}
+
+}

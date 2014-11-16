@@ -1,0 +1,106 @@
+package thor.model.geoset;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import thor.graphics.Point3D;
+
+public class GiftWrap3D {
+
+	protected List<Vertex> pts;
+	
+	public GiftWrap3D(List<Vertex> vertices)
+	{
+		pts = vertices.toArray();
+	}
+
+	protected Point3D search(Edge3D e) {
+		int i;
+		for (i = 0; pts[i] == e.start || pts[i] == e.end; i++) {
+			/* nothing */
+		}
+		Point3D cand = pts[i];
+		HalfSpace candh = new HalfSpace(e.start, e.end, cand);
+		for (i = i + 1; i < pts.length; i++) {
+			if (pts[i] != e.start && pts[i] != e.end && candh.inside(pts[i])) {
+				cand = pts[i];
+				candh = new HalfSpace(e.start, e.end, cand);
+			}
+		}
+		return cand;
+	}
+
+	protected Point3D search2d(Point3D p) {
+		int i;
+		i = pts[0] == p ? 1 : 0;
+		Point3D cand = pts[i];
+		HalfSpace candh = new HalfSpace(p, cand);
+		for (i = i + 1; i < pts.length; i++) {
+			if (pts[i] != p && candh.inside(pts[i])) {
+				cand = pts[i];
+				candh = new HalfSpace(p, cand);
+			}
+		}
+		return cand;
+	}
+
+	/* bottom point */
+	protected Point3D bottom() {
+		Point3D bot = pts[0];
+		for (int i = 1; i < pts.length; i++) {
+			if (pts[i].getY() < bot.getY()) {
+				bot = pts[i];
+			}
+		}
+		return bot;
+	}
+
+	public Mesh build() {
+		
+		BufferedMesh mesh = new BufferedMesh();
+		List<Vertex> vertices = new ArrayList<Vertex>();
+		int v_index = 0;
+		/*
+		 * First find a hull edge -- just connect bottommost to second from
+		 * bottom
+		 */
+		Point3D bot, bot2; /* bottom point and adjacent point */
+		bot = bottom();
+		bot2 = search2d(bot);
+
+		/* intialize the edge stack */
+		EdgeStack es = new EdgeStack();
+		es.put(bot, bot2);
+		es.put(bot2, bot);
+		List<Face> faces = new ArrayList<Face>();
+		//int tcount = 1;
+		Edge3D e = new Edge3D(bot, bot2);
+		// e.lastFrame = tcount++;
+		// faces.addElement(e);
+
+		/*
+		 * now the main loop -- keep finding faces till there are no more to be
+		 * found
+		 */
+		
+		while (!es.isEmpty()) {
+			e = es.get();
+			Point3D cand = search(e);
+			vertices.add(new Vertex(e.start.getX(), e.start.getY(), e.start.getZ()));
+			vertices.add(new Vertex(e.end.getX(), e.end.getY(), e.end.getZ()));
+			vertices.add(new Vertex(cand.getX(), cand.getY(), cand.getZ()));
+			Face f = new Face();
+			f.Vertices.add(v_index);
+			f.Vertices.add(v_index + 1);
+			f.Vertices.add(v_index + 2);
+			faces.add(f);// .addElement(new Triangle3d(e.start, e.end,
+									// cand, tcount++));
+			v_index+=3;
+			es.putp(e.start, cand);
+			es.putp(cand, e.end);
+		}
+		// faces.lastFrame = tcount;
+		return mesh;
+	}
+
+}
