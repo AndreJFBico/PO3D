@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Scanner"/>
-<fullyQualifiedTypeName name="java.io.Serializable"/>
-<fullyQualifiedTypeName name="java.awt.geom.Point2D"/>
-<fullyQualifiedTypeName name="thor.graphics.Point3D.Float"/>
-<fullyQualifiedTypeName name="thor.model.io.ModelReader"/>
-<fullyQualifiedTypeName name="thor.model.io.ModelReaderObj"/>
-<fullyQualifiedTypeName name="thor.modelanalysis.utils.Normalize"/>
-<fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
-<fullyQualifiedTypeName name="java.awt.MenuBar"/>
-<fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
 <fullyQualifiedTypeName name="javax.swing.KeyStroke"/>
 <fullyQualifiedTypeName name="com.jogamp.newt.event.KeyEvent"/>
 <fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
@@ -21,8 +11,6 @@
 <fullyQualifiedTypeName name="javax.swing.filechooser.FileFilter"/>
 <fullyQualifiedTypeName name="thor.demo.modelviewer.menus.MenuFactory"/>
 <fullyQualifiedTypeName name="thor.demo.modelviewer.Session"/>
-<fullyQualifiedTypeName name="thor.Model"/>
-<fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="thor.demo.modelviewer.menus.MenuFactory.MenuType"/>
 <fullyQualifiedTypeName name="thor.demo.modelviewer.menus.MenuHelp"/>
@@ -36,12 +24,10 @@
 <fullyQualifiedTypeName name="thor.demo.modelviewer.global.Session"/>
 <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
 <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
-<fullyQualifiedTypeName name="thor.model.BufferedModel"/>
 <fullyQualifiedTypeName name="thor.demo.modelviewer.BoundingBoxFrame"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
-<fullyQualifiedTypeName name="thor.model.geoset.Mesh"/>
 <fullyQualifiedTypeName name="java.io.FileReader"/>
 <fullyQualifiedTypeName name="java.util.Locale"/>
 <fullyQualifiedTypeName name="java.util.Vector"/>
@@ -56,8 +42,22 @@
 <fullyQualifiedTypeName name="thor.model.geoset.customMath"/>
 <fullyQualifiedTypeName name="thor.model.geoset.Face"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="thor.model.geoset.Bone"/>
+<fullyQualifiedTypeName name="thor.modelanalysis.utils.Scene"/>
+<fullyQualifiedTypeName name="thor.model.geoset.Mesh"/>
+<fullyQualifiedTypeName name="thor.Model"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="thor.model.io.ModelIO"/>
+<fullyQualifiedTypeName name="thor.modelanalysis.utils.Normalize"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="thor.model.geoset.Skeleton"/>
+<fullyQualifiedTypeName name="thor.model.geoset.GraphNode"/>
+<fullyQualifiedTypeName name="thor.model.geoset.GraphEdge"/>
+<fullyQualifiedTypeName name="thor.model.BufferedModel"/>
+<fullyQualifiedTypeName name="thor.graphics.Point3D"/>
 <fullyQualifiedTypeName name="thor.graphics.Point3D.Double"/>
+<fullyQualifiedTypeName name="thor.model.geoset.Matrix"/>
+<fullyQualifiedTypeName name="java.lang.Float"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="thor.graphics.Point3D"/>
 </qualifiedTypeNameHistroy>

@@ -1,7 +1,5 @@
 package thor.model.geoset;
 
-import thor.graphics.Point3D;
-
 public class Edge3D {
 	int _start; // end points
 	int _end;

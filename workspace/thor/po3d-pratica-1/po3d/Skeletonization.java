@@ -11,7 +11,10 @@ import thor.graphics.Point3D;
 import thor.model.BufferedModel;
 import thor.model.geoset.Bone;
 import thor.model.geoset.BufferedMesh;
+import thor.model.geoset.GraphEdge;
+import thor.model.geoset.GraphNode;
 import thor.model.geoset.Mesh;
+import thor.model.geoset.Skeleton;
 import thor.model.geoset.Vertex;
 import thor.model.geoset.Voxel;
 import thor.model.geoset.VoxelMesh;
@@ -23,11 +26,28 @@ import thor.modelanalysis.utils.Scene;
 public class Skeletonization {
 
 	public static void main(String args[]) throws IllegalArgumentException, IOException {
-
+		// Parameters
+		// 0.02f for mario and 1.6f thinning parameter
+		// 0.02f for dino and 1.5f thinning parameter
+		// 0.03f for cube with 1.5f thinning parameter
+		// 0.03f for torus with 2.5f thinning parameter
+		// 0.025 for cylinder with 1.5f thinning parameter
+		// clustering test - torus with voxel size 0.03f tp = 1.5f distancethreshold = 0.1 and clustersize = 3
+		
 		String inputModelFile1 = ".\\model-samples\\mario.stl";
 		String inputModelFile2 = ".\\model-samples\\torus.stl";
 		String inputModelFile3 = ".\\model-samples\\cube.stl";
-		float TP = 0.0f;
+		String inputModelFile4 = ".\\model-samples\\dino.stl";
+		String inputModelFile5 = ".\\model-samples\\monkey.stl";
+		String inputModelFile6 = ".\\model-samples\\cylinder.stl";
+		/*float TP = 1.5f;
+		float voxelSize = 0.02f;
+		float distanceThreshold = 0.3f;
+		int clusterSize = 3;*/
+		float TP = 1.8f;
+		float voxelSize = 0.02f;
+		float distanceThreshold = 0.1f;
+		int clusterSize =3;
 		
 		// Read the model from the file
 		Model model = ModelIO.read(new File(inputModelFile1));
@@ -38,15 +58,84 @@ public class Skeletonization {
 
 		Mesh mesh = model.getMeshes().get(0);
 
-		//Voxelize a Mesh
-		//TODO: attention this is where we define the voxel size
-		// 3f for mario
-		// 0.02f for dino
-		// 0.08f for cube with 1.5f thinning parameter
-		// 0.04f for torus with 2.5f thinning parameter
-		//
-		VoxelMesh test = new VoxelMesh(mesh.getVertices(), 0.04f, mesh.getFaces(), TP);
+		VoxelMesh test = new VoxelMesh(mesh.getVertices(), voxelSize, mesh.getFaces(), TP);
 		
+		Point3D barycenter = mesh.getBarycenter();
+		Point3D gridCenter = test.get_gridCenter();
+		
+//		model.translate(0.1, 0.1, 0.1);
+		
+		BufferedMesh voxel_mesh = generateThinnedVoxelizedMesh(test, mesh, TP);
+		
+		BufferedModel VoxelizedModel = new BufferedModel("voxelization", "none");
+		VoxelizedModel.addMesh(voxel_mesh);
+		System.out.println("FINISHED THINNING PROCESS");
+		
+		//new ModelViewer(512, 512, VoxelizedModel);
+		
+		BufferedModel skeleton = generateSkeleton(test, distanceThreshold, clusterSize);
+		System.out.println("FINISHED GRAPH GENERATION");
+		skeleton.addMesh(voxel_mesh);
+		new ModelViewer(512, 512, skeleton);
+	}
+
+	private static  BufferedModel generateSkeleton(VoxelMesh test, float distanceThreshold, int clusterSize)
+	{
+		BufferedModel model = new BufferedModel("sk", "none");
+		Skeleton skeleton = new Skeleton(test, distanceThreshold, clusterSize);
+		List<GraphNode> nodes = skeleton.get_directedGraph();	
+		List<GraphNode> sucessors = new ArrayList<GraphNode>();
+		
+		int nodeId = 0;
+		String name = "";
+		for(GraphNode n : nodes)
+		{
+			//-1  means parent is undefined
+			Bone b = new Bone(name + nodeId, nodeId, -2, n.getPosition());		
+			n.setBone(b);
+			nodeId++;
+		}
+		
+		for(GraphNode k : nodes)
+		{
+			sucessors.add(k);
+			while(!sucessors.isEmpty())
+			{
+				GraphNode n = sucessors.get(0);
+				sucessors.remove(0);
+				List<GraphEdge> edges = n.getEdges();
+				for(GraphEdge e : edges)
+				{
+					if(!e.isProcessed())
+					{
+						if(n.equals(e.get_origin()))
+						{
+							GraphNode destination = e.get_destination();
+							destination.getBone().setParent(n.getBone());
+							sucessors.add(destination);
+						}
+						else if (n.equals(e.get_destination()))
+						{
+							GraphNode origin = e.get_origin();
+							origin.getBone().setParent(n.getBone());	
+							sucessors.add(origin);
+						}
+						e.setProcessed(true);
+					}
+				}			
+			}
+		}
+
+		for(GraphNode n : nodes)
+		{
+			model.addBone(n.getBone());
+		}
+		
+		return model;
+	}
+	
+	private static BufferedMesh generateThinnedVoxelizedMesh(VoxelMesh test,Mesh mesh, float TP)
+	{
 		List<Voxel> voxels;
 
 		test.genBoundary();
@@ -57,9 +146,10 @@ public class Skeletonization {
 		
 		test.propagateTheBoundaryInward();
 		
-		voxels = test.getCustomGrid();
+		test.getCustomGrid(14, 25);
 		
-		test.volumetricThinning();
+		voxels = test.volumetricThinning();
+		
 		
 		System.out.println("voxel size: " + voxels.size());
 		int v_index = 0;
@@ -94,17 +184,7 @@ public class Skeletonization {
 
 			v_index += 8;
 		}
-		BufferedModel VoxelizedModel = new BufferedModel("voxelization", "none");
-		VoxelizedModel.addMesh(voxel_mesh);
-		System.out.println("FINISHED");
-		
-		// Create a new scene to be drawn
-		Scene scene = new Scene();
-		scene.setCameraPosition(0, 0, 1);
-		
-		// Add the model of drawables to be drawn on the Scene 
-		scene.addDrawable(VoxelizedModel);
-		new ModelViewer(512, 512, VoxelizedModel);
+		return voxel_mesh;
 	}
 	
 	private static void addface(int v_index, int inc0, int inc1, int inc2, int inc3, BufferedMesh mesh, float n_index)
@@ -135,42 +215,3 @@ public class Skeletonization {
 	}
 	
 }
-// a Bone receives a name, Id, it's parent Id (-1 if the bone is the root), the pivot point.
-/*Bone root = new Bone("root", 0, -1, new Point3D.Double(0, 0, 0));
-model.addBone(root);
-
-Bone legR = new Bone("legR", 1, 0, new Point3D.Double(-0.5, -0.25, 0));
-legR.setParent(root);
-model.addBone(legR);
-
-Bone legL = new Bone("legL", 3, 0, new Point3D.Double(0.5, -0.25, 0));
-legL.setParent(root);
-model.addBone(legL);
-
-Bone footR = new Bone("footR", 2, 1, new Point3D.Double(-0.5, -0.5, 0));
-footR.setParent(legR);
-model.addBone(footR);
-
-Bone footL = new Bone("footL", 4, 3, new Point3D.Double(0.5, -0.5, 0));
-footL.setParent(legL);
-model.addBone(footL);
-
-Bone torso = new Bone("torso", 4, 3, new Point3D.Double(0, 0.25, 0));
-torso.setParent(root);
-model.addBone(torso);
-
-Bone armR = new Bone("armR", 1, 0, new Point3D.Double(-0.5, 0.25, 0));
-armR.setParent(torso);
-model.addBone(armR);
-
-Bone armL = new Bone("armL", 1, 0, new Point3D.Double(0.5, 0.25, 0));
-armL.setParent(torso);
-model.addBone(armL);
-
-Bone head = new Bone("head", 1, 0, new Point3D.Double(0, 0.5, 0));
-head.setParent(torso);
-model.addBone(head);*/
-
-// To change the bones Parent (origin), and PivotParent (destiny)
-	//bone.setParent(bones.get(parentId));
-	//bone.setPivotPoint(pivotPoint.get(boneId));

@@ -13,16 +13,16 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="voxelSize" key="selection"/>
+		<item value="createDirectedGraph" key="selection"/>
 		<list key="findhistory">
-			<item value="voxelsize"/>
-			<item value="boundary"/>
-			<item value="_direction"/>
-			<item value="P"/>
-			<item value="_inside"/>
-			<item value="system.out"/>
-			<item value="geninside"/>
-			<item value="getvoxel"/>
+			<item value="createDirectedGraph"/>
+			<item value="eig"/>
+			<item value="_dToObject"/>
+			<item value="_t"/>
+			<item value="Ray"/>
+			<item value="direction"/>
+			<item value="equals"/>
+			<item value="findLightestEdge"/>
 		</list>
 		<list key="replacehistory">
 			<item value="hullPoint"/>

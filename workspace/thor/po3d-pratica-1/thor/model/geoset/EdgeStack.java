@@ -3,8 +3,6 @@ package thor.model.geoset;
 import java.util.Enumeration;
 import java.util.Stack;
 
-import thor.graphics.Point3D;
-
 public class EdgeStack {
 	  private Stack<Edge3D> data; // contents of the stack
 	  	

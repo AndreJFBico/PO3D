@@ -1,6 +1,5 @@
 package thor.model.geoset;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import thor.graphics.Point3D;

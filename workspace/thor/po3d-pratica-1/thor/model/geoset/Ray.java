@@ -1,11 +1,9 @@
 package thor.model.geoset;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import thor.graphics.Point3D;
-import thor.graphics.Point3D.Double;
 
 public class Ray {
 

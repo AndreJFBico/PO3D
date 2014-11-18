@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="lib/jdbm-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/thor-core-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/thor-model-viewer-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/Jama-1.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,9 +1,0 @@
-package thor.model.geoset;
-
-public class Node {
-
-	public Node()
-	{
-		
-	}
-}

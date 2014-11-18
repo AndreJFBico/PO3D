@@ -3,15 +3,13 @@ package thor.model.geoset;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
 
-import thor.graphics.Vector3D;
 import thor.graphics.Point3D;
-import thor.graphics.Point3D.Double;
+import thor.graphics.Vector3D;
 
 /**
  * The abstract class Mesh is the superclass of all classes that represent
@@ -245,9 +243,9 @@ public abstract class Mesh extends Object {
 	public Point3D getBarycenter() {
 		checkTriangulation();
 
-		if (_baryCenterGenerated) {
-			return _baryCenter;
-		}
+//		if (_baryCenterGenerated) {
+//			return _baryCenter;
+//		}
 
 		Point3D sumAR = new Point3D.Double(0.0f, 0.0f, 0.0f);
 		Point3D C = new Point3D.Double(0.0f, 0.0f, 0.0f);

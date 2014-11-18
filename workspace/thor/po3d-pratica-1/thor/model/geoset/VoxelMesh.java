@@ -1,11 +1,9 @@
 package thor.model.geoset;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import thor.graphics.Point3D;
-import thor.graphics.Point3D.Double;
-import thor.model.geoset.Voxel;
 
 public class VoxelMesh {
 
@@ -19,10 +17,12 @@ public class VoxelMesh {
 	protected List<Face> _faces;
 	protected List<Voxel> _thinnedVolume;
 	protected float _TP;
+	protected Point3D _gridCenter;
 
 	private boolean dtRModified = false;
 
-	public VoxelMesh(List<Vertex> vertices, double voxelSize, List<Face> faces, float TP) {
+	public VoxelMesh(List<Vertex> vertices, double voxelSize, List<Face> faces,
+			float TP) {
 		_vertices = vertices;
 		_faces = faces;
 		_TP = TP;
@@ -45,12 +45,13 @@ public class VoxelMesh {
 				max_z = vertices.get(i).getZ();
 		}
 
-		min_x -= voxelSize * 3;
-		min_y -= voxelSize * 3;
-		min_z -= voxelSize * 3;
-		max_x += voxelSize * 3;
-		max_y += voxelSize * 3;
-		max_z += voxelSize * 3;
+		int increase = 3;
+		min_x -= voxelSize * increase;
+		min_y -= voxelSize * increase;
+		min_z -= voxelSize * increase;
+		max_x += voxelSize * increase;
+		max_y += voxelSize * increase;
+		max_z += voxelSize * increase;
 
 		System.out.println("running");
 		// bounding box of the mesh
@@ -66,6 +67,9 @@ public class VoxelMesh {
 		numVoxelY = (int) Math.round(lengthY / voxelSize);
 		numVoxelZ = (int) Math.round(lengthZ / voxelSize);
 
+		_gridCenter = new Point3D.Double(numVoxelX * voxelSize/2f, numVoxelY * voxelSize/2f, numVoxelZ * voxelSize/2f);
+		_gridCenter = customMath.add(_gridCenter, new Point3D.Double(min_x, min_y, min_z));
+		
 		// System.out.println(numVoxelX + " " + numVoxelY + " " + numVoxelZ);
 		// System.out.println(lengthX + " " + lengthY + " " + lengthZ);
 
@@ -101,6 +105,9 @@ public class VoxelMesh {
 			current_max_y = min_y + _voxelSize;
 		}
 		System.out.println(numVoxelX * numVoxelY * numVoxelZ);
+		
+		
+		
 		// done initializing the voxels
 
 		// possible optimization where instead of iterating all the voxels once
@@ -121,7 +128,14 @@ public class VoxelMesh {
 		}
 	}
 
-	// TODO: TEST if it works
+	public Point3D get_gridCenter() {
+		return _gridCenter;
+	}
+
+	public void set_gridCenter(Point3D _gridCenter) {
+		this._gridCenter = _gridCenter;
+	}
+
 	private void addNToV(List<VoxelNeighbor> nghbrs, int tmpx, int tmpy,
 			int tmpz, VoxelNeighborType type) {
 		// if its an invalid neighbor as in present outside of a grid, it
@@ -135,7 +149,6 @@ public class VoxelMesh {
 	}
 
 	// Function that generates a voxels 26 neighbors.
-	// TODO: TEST if it works
 	private List<VoxelNeighbor> genVoxelNeighbors(int x, int y, int z) {
 		List<VoxelNeighbor> neighbors = new ArrayList<VoxelNeighbor>();
 
@@ -302,15 +315,16 @@ public class VoxelMesh {
 		return foundInsideVoxels;
 	}
 
+	//TODO: check normalization of direction
 	public List<Voxel> genInsideVoxelsRay() {
 		for (int x = 0; x < numVoxelX; x++) {
 			for (int y = 0; y < numVoxelY; y++) {
 				Voxel voxel = getVoxel(x, y, 0);
 				Ray ray = new Ray(customMath.sub(voxel._position,
 						new Point3D.Double(0.0f, 0.0f, _voxelSize)),
-						customMath.sub(customMath.add(voxel._position,
+						customMath.normalize(customMath.sub(customMath.add(voxel._position,
 								new Point3D.Double(0.0f, 0.0f, 1.0f)),
-								voxel._position));
+								voxel._position)));
 				_inside.addAll(getVoxelsPerZLineRayTracing(ray, x, y));
 			}
 		}
@@ -319,7 +333,6 @@ public class VoxelMesh {
 
 	// Generates inside voxels and the distance transform of each voxel to the
 	// boundary
-	// TODO: TEST if it works
 	public List<Voxel> genInsideVoxels() {
 		boolean foundBoundary = false;
 		int numBoundaryVoxels = 0;
@@ -386,7 +399,6 @@ public class VoxelMesh {
 		return _inside;
 	}
 
-	// TODO: TEST if this works
 	// First pass of the distance transform calculation algorithm.
 	// This function is used when calculating the distance transform for
 	// boundary voxels.
@@ -409,7 +421,6 @@ public class VoxelMesh {
 		}
 	}
 
-	// TODO: TEST if this works
 	private List<Voxel> iterate_and_assign_dts(List<Voxel> BV) {
 		// TODO - this is not a copy and so we will iterate and fix everything
 		List<Voxel> newBV = new ArrayList<Voxel>();
@@ -421,24 +432,33 @@ public class VoxelMesh {
 				if (r._voxel._type == VoxelType.INSIDE_VOXEL) {
 					if (r._type == VoxelNeighborType.F_NEIGHBOR) {
 						if (r._voxel._DT > p._DT + 3)
+						{
 							dtRModified = true;
+							newBV.add(r._voxel);
+						}							
 						r._voxel._DT = Math.min(r._voxel._DT, p._DT + 3);
 						// _voxelGrid[r._indexX * numVoxelY * numVoxelZ +
 						// r._indexY * numVoxelZ + r._indexZ]._DT = r._DT;
 					} else if (r._type == VoxelNeighborType.E_NEIGHBOR) {
 						if (r._voxel._DT > p._DT + 4)
+						{
 							dtRModified = true;
+							newBV.add(r._voxel);
+						}	
 						r._voxel._DT = Math.min(r._voxel._DT, p._DT + 4);
 						// _voxelGrid[r._indexX * numVoxelY * numVoxelZ +
 						// r._indexY * numVoxelZ + r._indexZ]._DT = r._DT;
 					} else if (r._type == VoxelNeighborType.V_NEIGHBOR) {
 						if (r._voxel._DT > p._DT + 5)
+						{
 							dtRModified = true;
+							newBV.add(r._voxel);
+						}	
 						r._voxel._DT = Math.min(r._voxel._DT, p._DT + 5);
 						// _voxelGrid[r._indexX * numVoxelY * numVoxelZ +
 						// r._indexY * numVoxelZ + r._indexZ]._DT = r._DT;
 					}
-					newBV.add(r._voxel);
+					
 				}
 			}
 			p._type = VoxelType.OUTSIDE_VOXEL;
@@ -452,7 +472,6 @@ public class VoxelMesh {
 		return newBV;
 	}
 
-	// TODO: TEST if this works
 	public List<Voxel> propagateTheBoundaryInward() {
 		// TODO: check if this returns a true copy i believe it does ->convex
 		// hull example
@@ -483,10 +502,9 @@ public class VoxelMesh {
 		return BV;
 	}
 
-	// TODO: TEST if this works
 	// Volumetric thinning
 	public List<Voxel> volumetricThinning() {
-		
+
 		List<Voxel> thinnedVolume = new ArrayList<Voxel>();
 		for (int x = 0; x < numVoxelX; x++) {
 			for (int y = 0; y < numVoxelY; y++) {
@@ -496,16 +514,20 @@ public class VoxelMesh {
 					float numberOfVoxels = 0f;
 					Voxel tmpV = getVoxel(x, y, z);
 
-					if (tmpV._type == VoxelType.OUTSIDE_VOXEL)
+					if (tmpV._type == VoxelType.OUTSIDE_VOXEL
+							|| tmpV._type == VoxelType.BOUNDARY_VOXEL)
 						continue;
 
 					List<VoxelNeighbor> neighbors = tmpV._neighbors;
 					for (int i = 0; i < neighbors.size(); i++) {
-						if (neighbors.get(i)._voxel._type != VoxelType.OUTSIDE_VOXEL) {
+						if (neighbors.get(i)._voxel._type != VoxelType.OUTSIDE_VOXEL ) {
 							sumDT += neighbors.get(i)._voxel._DT;
 							numberOfVoxels++;
 						}
 					}
+					/*
+					 * if(numberOfVoxels != 26) continue;
+					 */
 					float MNT = sumDT / numberOfVoxels;
 					if (MNT < tmpV._DT - _TP) {
 						thinnedVolume.add(tmpV);
@@ -513,6 +535,7 @@ public class VoxelMesh {
 				}
 			}
 		}
+		_thinnedVolume = thinnedVolume;
 		return thinnedVolume;
 	}
 
@@ -566,9 +589,9 @@ public class VoxelMesh {
 			}
 
 			// number of voxels width on x, y and z
-			int xnum_voxels = highx - lowx;
-			int ynum_voxels = highy - lowy;
-			int znum_voxels = highz - lowz;
+			//int xnum_voxels = highx - lowx;
+			//int ynum_voxels = highy - lowy;
+			//int znum_voxels = highz - lowz;
 
 			for (int x = lowx; x <= highx; x++) {
 				for (int y = lowy; y <= highy; y++) {
@@ -605,23 +628,18 @@ public class VoxelMesh {
 		return _voxelGrid[x * numVoxelY * numVoxelZ + y * numVoxelZ + z];
 	}
 
-	public List<Voxel> getCustomGrid() {
+	public List<Voxel> getCustomGrid(int min, int max) {
 		List<Voxel> custom = new ArrayList<Voxel>();
 		int maxValue = 0;
 		for (Voxel v : _voxelGrid) {
 			int val = Math.round(v._DT);
-			if(val > maxValue && v._DT < 10000)
-			{
+			if (val > maxValue && v._DT < 10000) {
 				maxValue = val;
-				custom.clear();
 			}
-			if(val == maxValue)
-			{
+
+			if (val <= max && val > min) {
 				custom.add(v);
 			}
-			/*if (val < 30 && val > 14) {
-				custom.add(v);
-			}*/
 		}
 
 		System.out.println("Highest DT: " + maxValue);

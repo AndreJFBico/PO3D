@@ -1,7 +1,7 @@
 package thor.model.geoset;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 import thor.graphics.Point3D;
 
@@ -140,5 +140,34 @@ public class customMath {
 		point.setLocation(point.getX() / val, point.getY() / val, point.getZ()
 				/ val);
 	}
-
+	
+	public static boolean pierced(VoxelMesh mesh,GraphNode n, GraphNode e)
+	{
+		Point3D direction = customMath.sub(e._position, n._position);
+		Ray r = new Ray(n._position, customMath.normalize(direction));
+		List<Face> faces = mesh._faces;
+		List<Vertex> vertices = mesh._vertices;
+		double minorDistance = Float.MAX_VALUE;
+		for(Face f : faces)
+		{
+			List<Point3D> triangle = new ArrayList<Point3D>();
+			List<Integer> faceVs = f.Vertices;
+			for(Integer i : faceVs)
+			{
+				triangle.add(vertices.get(i));
+			}
+			if(r.intersectWithTriangle(triangle))
+			{
+				if(r._dToObject < minorDistance)
+				{
+					minorDistance = r._dToObject;
+				}
+			}
+		}
+		if(minorDistance > customMath.length(direction))
+		{
+			return false;
+		}
+		else return true;
+	}
 }
